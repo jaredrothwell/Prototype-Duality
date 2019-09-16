@@ -8,11 +8,12 @@ public class Movement : MonoBehaviour
     public GameObject bow;
 
     public float moveSpeed = 10f;
-    private Vector3 moveInput;
+    private Vector3 moveInputShield;
+    private Vector3 moveInputBow;
     private Vector3 moveVelocityShield;
     private Vector3 moveVelocityBow;
     private Rigidbody rbShield;
-    private Rigidbody rbSword;
+    private Rigidbody rbBow;
     private Transform transformShield;
     private Transform transformBow;
 
@@ -21,21 +22,34 @@ public class Movement : MonoBehaviour
     private float currentTime = 0f;
     public GameObject arrow;
     public Transform bow_obj;
+    public float HorizontalShield;
+    public float HorizontalBow;
+    public float VerticalShield;
+    public float VerticalBow;
+    public float rotateShield = 0;
+    public float rotateBow = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         rbShield = shield.GetComponent<Rigidbody>();
-        rbSword = bow.GetComponent<Rigidbody>();
+        rbBow = bow.GetComponent<Rigidbody>();
         transformShield = shield.GetComponent<Transform>();
         transformBow = bow.GetComponent<Transform>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
-        moveVelocityShield = moveVelocityBow = moveInput * moveSpeed;
+        HorizontalShield = Input.GetAxisRaw("Horizontal");
+        HorizontalBow = Input.GetAxisRaw("Horizontal");
+        VerticalShield = Input.GetAxisRaw("Vertical");
+        VerticalBow = Input.GetAxisRaw("Vertical");
+        moveInputShield = rotatePointAroundAxis(new Vector3(HorizontalShield, 0f, VerticalShield), rotateShield, new Vector3(0, 1, 0));
+        moveInputBow = rotatePointAroundAxis(new Vector3(HorizontalBow, 0f, VerticalBow), rotateBow, new Vector3(0, 1, 0));
+        moveVelocityShield = moveInputShield * moveSpeed;
+        moveVelocityBow = moveInputBow * moveSpeed;
 
         Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Mouse X") + Vector3.forward * Input.GetAxisRaw("Mouse Y");
         if (playerDirection.sqrMagnitude > 0.0f)
@@ -65,9 +79,15 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveVelocityBow.y = rbSword.velocity.y;
+        moveVelocityBow.y = rbBow.velocity.y;
         moveVelocityShield.y = rbShield.velocity.y;
-        rbSword.velocity = moveVelocityBow;
-        rbShield.velocity = moveVelocityBow;
+        rbBow.velocity = moveVelocityBow;
+        rbShield.velocity = moveVelocityShield;
+    }
+
+    private Vector3 rotatePointAroundAxis(Vector3 point, float angle, Vector3 axis)
+    {
+        Quaternion q = Quaternion.AngleAxis(angle, axis);
+        return q * point; //Note: q must be first (point * q wouldn't compile)
     }
 }
