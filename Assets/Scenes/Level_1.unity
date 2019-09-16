@@ -1082,6 +1082,11 @@ PrefabInstance:
       propertyPath: door2
       value: 
       objectReference: {fileID: 1941894293}
+    - target: {fileID: 150956192964400355, guid: fc84dd112227d3f4891041dc1c05c720,
+        type: 3}
+      propertyPath: NextLevel
+      value: Level_3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc84dd112227d3f4891041dc1c05c720, type: 3}
 --- !u!1001 &982577552623406406
