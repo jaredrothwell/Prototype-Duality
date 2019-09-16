@@ -10,6 +10,7 @@ public class turn : MonoBehaviour
     public float currentTime = 0f;
     private Movement movement;
     public GameObject PlayerManager;
+    public bool bow = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +21,26 @@ public class turn : MonoBehaviour
     void Update()
     {
         updateTime();
-        if(player != null && currentTime == 0)
+        if(player != null && Input.GetButtonDown("Fire2"))
         {
             if(clockwise)
             {
                 movement = PlayerManager.GetComponentInParent<Movement>();
-                movement.rotateBow += 90;
-                if(movement.rotateBow == 360)
+                if (bow)
                 {
-                    movement.rotateBow = 0;
+                    movement.rotateBow += 90;
+                    if (movement.rotateBow == 360)
+                    {
+                        movement.rotateBow = 0;
+                    }
+                }
+                else
+                {
+                    movement.rotateShield += 90;
+                    if (movement.rotateShield == 360)
+                    {
+                        movement.rotateShield = 0;
+                    }
                 }
             }
         }
