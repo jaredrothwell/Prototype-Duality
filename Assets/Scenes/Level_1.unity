@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caca6fd55e2cbbe46afd031be075041a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reset: Level_1
+  reset: Test-Scene-1
 --- !u!1001 &766958685
 PrefabInstance:
   m_ObjectHideFlags: 0
