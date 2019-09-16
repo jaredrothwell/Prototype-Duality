@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class kill : MonoBehaviour
 {
-    public string reset;
     private void OnCollisionEnter(Collision collision)
     {
-        SceneManager.LoadScene(reset);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }
