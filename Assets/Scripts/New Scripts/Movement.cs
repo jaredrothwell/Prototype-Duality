@@ -51,11 +51,15 @@ public class Movement : MonoBehaviour
         moveVelocityShield = moveInputShield * moveSpeed;
         moveVelocityBow = moveInputBow * moveSpeed;
 
-        Vector3 playerDirection = Vector3.right * Input.GetAxisRaw("Mouse X") + Vector3.forward * Input.GetAxisRaw("Mouse Y");
-        if (playerDirection.sqrMagnitude > 0.0f)
+        Vector3 playerDirectionShield = rotatePointAroundAxis(Vector3.right * Input.GetAxisRaw("Mouse X") + Vector3.forward * Input.GetAxisRaw("Mouse Y"), rotateShield, new Vector3(0, 1, 0));
+        Vector3 playerDirectionBow = rotatePointAroundAxis(Vector3.right * Input.GetAxisRaw("Mouse X") + Vector3.forward * Input.GetAxisRaw("Mouse Y"), rotateBow, new Vector3(0, 1, 0));
+        if (playerDirectionShield.sqrMagnitude > 0.0f)
         {
-            transformShield.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
-            transformBow.rotation = Quaternion.LookRotation(playerDirection, Vector3.up);
+            transformShield.rotation = Quaternion.LookRotation(playerDirectionShield, Vector3.up);
+        }
+        if (playerDirectionBow.sqrMagnitude > 0.0f)
+        {
+            transformBow.rotation = Quaternion.LookRotation(playerDirectionBow, Vector3.up);
         }
 
         currentTime -= Time.deltaTime;
