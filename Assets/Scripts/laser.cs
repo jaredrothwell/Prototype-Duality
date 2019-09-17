@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class laser : MonoBehaviour
 {
@@ -21,9 +22,12 @@ public class laser : MonoBehaviour
             if(hit.collider)
             {
                 lr.SetPosition(1, hit.point);
-                if(hit.transform.tag == "player")
+                if(hit.transform.tag == "player" || hit.transform.tag == "bow")
                 {
-                    hit.transform.GetComponent<Stats>().damage(1);
+                    //hit.transform.GetComponent<Stats>().damage(1);
+                    Destroy(hit.transform.gameObject);
+                    Scene scene = SceneManager.GetActiveScene();
+                    SceneManager.LoadScene(scene.name);
                 }
             }
             else
