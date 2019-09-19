@@ -1,0 +1,52 @@
+{
+    "name": "PlayerControls_Split",
+    "maps": [
+        {
+            "name": "Split_Gameplay",
+            "id": "5430ea01-384c-4cfb-9ab2-1c01ef76a7dc",
+            "actions": [
+                {
+                    "name": "LeftCharMovement",
+                    "type": "Button",
+                    "id": "9f8e1191-afcb-446b-b86b-9949a05702a1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightCharMovement",
+                    "type": "Button",
+                    "id": "2cb8fbb8-b04b-49ce-925e-e658403858a2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c31a8b77-06b7-42b4-b15d-09461f230ff7",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftCharMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aabd587c-fe32-4e0b-ae5c-dd9b7527c8a1",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightCharMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
