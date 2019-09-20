@@ -12,8 +12,8 @@ public class PlayerController_Split : MonoBehaviour
     Vector2 LeftMovement;
     Vector2 RightMovement;
 
-    public float movementSpeed; //Default 10
-    public float gravityScale;  //Default 1
+    public float movementSpeed = 10; //Default 10
+    public float gravityScale = 1;  //Default 1
 
     private void Awake()
     {
