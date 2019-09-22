@@ -29,6 +29,8 @@ public class Movement : MonoBehaviour
     public float rotateShield = 0;
     public float rotateBow = 0;
 
+    public bool link = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,62 @@ public class Movement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        if (Input.GetButtonDown("Fire2"))
+            link = !link;
+
+        if (link)
+            linked();
+        else
+            unlinked();
+    }
+
+    private void unlinked()
+    {
+        //Sword and bow player
+        currentTime -= Time.deltaTime;
+        if (currentTime < 0f)
+        {
+            currentTime = 0f;
+        }
+
+        if (Input.GetButton("Fire1"))
+        {
+            moveInputBow = new Vector3(0f, 0f, 0f);
+            if (currentTime == 0f)
+            {
+                GameObject theArrow = Instantiate(arrow, transform.position, Quaternion.identity);
+                arrow arrowScript = theArrow.GetComponent<arrow>();
+                arrowScript.target = bow_obj;
+                currentTime = timer;
+
+            }
+        }
+        else
+        {
+            moveInputBow = new Vector3(Input.GetAxisRaw("Mouse X"), 0f, Input.GetAxisRaw("Mouse Y"));
+        }
+
+        Vector3 playerDirectionBow = Vector3.right * Input.GetAxisRaw("Mouse X") + Vector3.forward * Input.GetAxisRaw("Mouse Y");
+        transformBow.rotation = Quaternion.LookRotation(playerDirectionBow, Vector3.up);
+        moveVelocityBow = moveInputBow * moveSpeed;
+
+
+        //Shield player
+        moveInputShield = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        moveVelocityShield = moveInputShield * moveSpeed;
+
+        if (!Input.GetButton("Fire2"))
+        {
+            Vector3 playerDirectionShield = Vector3.right * Input.GetAxisRaw("Horizontal") + Vector3.forward * Input.GetAxisRaw("Vertical");
+            if (playerDirectionShield.sqrMagnitude > 0.0f)
+            {
+                transformShield.rotation = Quaternion.LookRotation(playerDirectionShield, Vector3.up);
+            }
+        }
+    }
+
+    private void linked()
     {
         HorizontalShield = Input.GetAxisRaw("Horizontal");
         HorizontalBow = Input.GetAxisRaw("Horizontal");
