@@ -67,7 +67,7 @@ public class Movement : MonoBehaviour
             moveInputBow = new Vector3(0f, 0f, 0f);
             if (currentTime == 0f)
             {
-                GameObject theArrow = Instantiate(arrow, transform.position, Quaternion.identity);
+                GameObject theArrow = Instantiate(arrow, transformBow.position, Quaternion.identity);
                 arrow arrowScript = theArrow.GetComponent<arrow>();
                 arrowScript.target = bow_obj;
                 currentTime = timer;
