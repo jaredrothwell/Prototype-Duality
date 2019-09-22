@@ -12,6 +12,7 @@ TagManager:
   - sword
   - barrier
   - arrow
+  - Shooter
   layers:
   - Default
   - TransparentFX

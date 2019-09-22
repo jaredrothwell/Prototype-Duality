@@ -20,7 +20,6 @@ public class PlayerController_Split : MonoBehaviour
         //Map Input and controls.
         controls = new PlayerControls_Split();
         controller = GetComponent<CharacterController>();
-        //EXAMPLE CASE: controls.Gameplay.Action.performed += ctx => Grow();
 
         //Use lambda expressions
         controls.Split_Gameplay.LeftCharMovement.performed += ctx => LeftMovement = ctx.ReadValue<Vector2>();

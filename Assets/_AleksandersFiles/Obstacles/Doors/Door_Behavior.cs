@@ -6,6 +6,7 @@ public class Door_Behavior : MonoBehaviour
 {
     public List<Button_Behavior> ButtonsToActivate;
     public bool isOpen = false;
+    public float doorOpenHeight = 2f;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +49,7 @@ public class Door_Behavior : MonoBehaviour
             isOpen = true;
             Renderer render = GetComponent<Renderer>();
             render.material.color = Color.green;
-            transform.localPosition = transform.localPosition + new Vector3(0f, 30f);
+            transform.localPosition = transform.localPosition + new Vector3(0f, doorOpenHeight);
         }
         
     }

@@ -50,14 +50,14 @@ public class Button_Behavior : MonoBehaviour
 
     private void SetActive()
     {
-        render.material.color = activeColor;
         isActive = true;
+        render.material.color = activeColor;
     }
 
     private void SetInactive()
     {
-        render.material.color = standardColor;
         isActive = false;
+        render.material.color = standardColor;
     }
 
 
