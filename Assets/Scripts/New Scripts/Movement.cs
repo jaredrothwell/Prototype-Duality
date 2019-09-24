@@ -80,7 +80,7 @@ public class Movement : MonoBehaviour
         }
 
         Vector3 playerDirectionBow = Vector3.right * Input.GetAxisRaw("Mouse X") + Vector3.forward * Input.GetAxisRaw("Mouse Y");
-        transformBow.rotation = Quaternion.LookRotation(playerDirectionBow, Vector3.up);
+        transformBow.rotation = Quaternion.LookRotation(playerDirectionBow, Vector3.up); //Blowing up the console
         moveVelocityBow = moveInputBow * moveSpeed;
 
 

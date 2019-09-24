@@ -6,7 +6,7 @@ public class Bullet_Behavior : MonoBehaviour
 {
     public Exclusivity_Enum.exclusivity exclusiveTo;
 
-    public float lifeTime = 3f; //Bullet has a lifetime of 3 seconds
+    public float lifeTime; //Bullet has a lifetime of 3 seconds
     public float movementSpeed = 5f;
 
     //Visual variables
@@ -40,11 +40,11 @@ public class Bullet_Behavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(lifeTime > 0)
-        {
-            // Destroy the bullet after x seconds of firing
-            Destroy(this.gameObject, lifeTime);
-        }
+        //if(lifeTime > 0)
+        //{
+        //    // Destroy the bullet after x seconds of firing
+        //    Destroy(this.gameObject, lifeTime);
+        //}
     }
 
     // Update is called once per frame

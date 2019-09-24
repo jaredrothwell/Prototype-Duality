@@ -70,6 +70,7 @@ public class Button_Behavior : MonoBehaviour
             || (other.gameObject.tag == "sword" && exclusiveTo.Equals(Exclusivity_Enum.exclusivity.girl)) 
             || (exclusiveTo.Equals(Exclusivity_Enum.exclusivity.either) && (other.gameObject.tag == "Shield" || other.gameObject.tag == "sword")) ) 
         {
+            SetActive();
             ButtonHasBeenActivated();
         }
     }
@@ -81,6 +82,7 @@ public class Button_Behavior : MonoBehaviour
             || (other.tag == "sword" && exclusiveTo.Equals(Exclusivity_Enum.exclusivity.girl))
             || (exclusiveTo.Equals(Exclusivity_Enum.exclusivity.either) && (other.tag == "Shield" || other.tag == "sword")))
         {
+            SetInactive();
             ButtonHasBeenDeActivated();
         }
     }

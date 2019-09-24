@@ -25,15 +25,16 @@ public class Door_Behavior : MonoBehaviour
     void ButtonHasBeenPressed()
     {
         bool allButtonsPressed = true;
+
         foreach (Button_Behavior button in ButtonsToActivate)
         {
-            if(!button.isActive)
+            if (!button.isActive)
             {
                 allButtonsPressed = false;
             }
         }
 
-        if(allButtonsPressed)
+        if (allButtonsPressed)
         {
             OpenDoor();
         }

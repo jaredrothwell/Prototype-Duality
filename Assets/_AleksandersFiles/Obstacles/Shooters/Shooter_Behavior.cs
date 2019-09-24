@@ -8,7 +8,7 @@ public class Shooter_Behavior : MonoBehaviour
 
     //Bullet Variables
     public GameObject bullet;
-    public float shootSpeed = .1f;       //How long to wait between each bullet
+    public float shootSpeed = .3f;       //How long to wait between each bullet
     public float bulletMovementSpeed = 5f;
     public float bulletLifetime = 3f;
 
@@ -18,11 +18,21 @@ public class Shooter_Behavior : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        bullet = Instantiate(bullet); // Instantiate(bullet);
+        initBullet();
         render = GetComponent<Renderer>();
         setColor();
-        SetBullet();
+        //SetBullet();
         InvokeRepeating("ShootBullet", 0f, shootSpeed);
+    }
+
+    //Initialize bullet to be unique with all the info given to the shooter
+    protected void initBullet()
+    {
+        bullet.GetComponent<Bullet_Behavior>().lifeTime = -1;
+        bullet = Instantiate(bullet); // Instantiate(bullet);
+        bullet.GetComponent<Bullet_Behavior>().exclusiveTo = exclusiveTo;
+        bullet.GetComponent<Bullet_Behavior>().movementSpeed = bulletMovementSpeed;
+        bullet.GetComponent<Bullet_Behavior>().lifeTime = bulletLifetime;
     }
 
     protected void setColor()
@@ -52,7 +62,9 @@ public class Shooter_Behavior : MonoBehaviour
 
     protected void ShootBullet()
     {
-        Instantiate(bullet, transform.position, transform.rotation);
+        GameObject nb =  Instantiate(bullet, transform.position, transform.rotation);
+        // Destroy the bullet after x seconds of firing
+        Destroy(nb, bulletLifetime);
     }
 
     //If Shooter becomes reactivated

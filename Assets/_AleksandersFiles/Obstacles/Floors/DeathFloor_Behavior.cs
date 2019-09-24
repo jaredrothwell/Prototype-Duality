@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.SceneManagement; //Remove when using proper respawning
+
 [RequireComponent(typeof(Collider))]
 public class DeathFloor_Behavior : MonoBehaviour
 {
@@ -123,7 +125,10 @@ public class DeathFloor_Behavior : MonoBehaviour
                 || ((other.gameObject.tag == "Shield" || other.gameObject.tag == "sword") && exclusiveWhenActive.Equals(Exclusivity_Enum.exclusivity.either)) )
             {
                 //kill other
-                other.GetComponent<Player_Behavior>().Death();
+                //other.GetComponent<Player_Behavior>().Death();
+                //Temporary until respawning is complete
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
             }
         }
         else
@@ -134,7 +139,10 @@ public class DeathFloor_Behavior : MonoBehaviour
                 || ((other.gameObject.tag == "Shield" || other.gameObject.tag == "sword") && exclusiveTo.Equals(Exclusivity_Enum.exclusivity.either)) )
             {
                 //kill other
-                other.GetComponent<Player_Behavior>().Death();
+                //other.GetComponent<Player_Behavior>().Death();
+                //Temporary until respawning is complete
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
             }
         }
     }
